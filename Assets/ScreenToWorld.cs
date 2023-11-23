@@ -172,6 +172,8 @@ public class ScreenToWorld : MonoBehaviour
                 return 16;
             case SampleDown.down32Sample:
                 return 32;
+            case SampleDown.down64Sample:
+                return 64;
             default:
                 return 4;
         }

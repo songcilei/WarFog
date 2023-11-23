@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -24,9 +25,11 @@ public class DrawWarFogTex : MonoBehaviour
     public SampleDown _samepleDown = SampleDown.None;
     private int samDown = 0;
     public Texture2D _tex2D;
-    private RenderTexture oldTex;
+    public RenderTexture oldTex;
     void Start()
     {
+        oldTex = RenderTexture.GetTemporary(Screen.width, Screen.height);
+
     }
     
     
@@ -58,9 +61,7 @@ public class DrawWarFogTex : MonoBehaviour
         
 // Fade RT
         _cmd.SetGlobalFloat(_LerpSpeed, LerpSpeed);
-        //_cmd.SetGlobalTexture(_OldRt,_OldRt);
         _cmd.SetGlobalTexture(_SourTex,_rt);
-        //_cmd.Blit(_rt,oldTex,_mat,1);
         
 //set Global Texture
 
@@ -74,12 +75,11 @@ public class DrawWarFogTex : MonoBehaviour
 
     public void Update()
     {
-        oldTex = RenderTexture.GetTemporary(Screen.width, Screen.height);
         Shader.SetGlobalTexture("_OldMainTex",oldTex);
         Graphics.Blit(null,oldTex,_mat,1);
 
         Shader.SetGlobalTexture("_WarFogMap",oldTex);
-        RenderTexture.ReleaseTemporary(oldTex);
+        // RenderTexture.ReleaseTemporary(oldTex);
     }
 
 
@@ -90,6 +90,12 @@ public class DrawWarFogTex : MonoBehaviour
 
     private void OnDestroy()
     {
+
+        if (_cmd==null)
+        {
+            return;
+        }
+
         if (_rt!=null)
         {
             _cmd.ReleaseTemporaryRT(_rt);

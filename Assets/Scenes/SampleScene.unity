@@ -185,7 +185,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obj: {fileID: 27974306412340998, guid: bf7cebf2d0ad049c09db0c4b3815da51, type: 3}
   FogMgr: {fileID: 0}
-  SampleDown: 3
+  SampleDown: 2
   rtWidth: 0
   rtHeight: 0
   _tex2D: {fileID: 0}
@@ -202,12 +202,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _BlurSize: 4
-  LerpSpeed: 0.3
+  LerpSpeed: 1
   _mat: {fileID: 2100000, guid: b4348ccdf18a1414d8b2b608a7142683, type: 2}
   _warFogMat: {fileID: 2100000, guid: b4348ccdf18a1414d8b2b608a7142683, type: 2}
   k_tag: BoxBlur
   _samepleDown: 0
   _tex2D: {fileID: 0}
+  oldTex: {fileID: 0}
 --- !u!1001 &169824180
 PrefabInstance:
   m_ObjectHideFlags: 0
